@@ -37,7 +37,7 @@ const BlogLayout = () => {
             </div>
             <div className="buttons">
                 <button onClick={() => deletePost(id)}>Delete</button>
-                <Link to={"/edit/" + id}>Update</Link>
+                <button><Link to={"/edit/" + id}>Update</Link></button>
             </div>
         </div >
     );

@@ -46,7 +46,7 @@ const Write = () => {
                         <div>
                             <div style={{ paddingTop: '30px' }} className="item"><input type="text" placeholder="Enter your name" value={author} onChange={(e) => setAuthor(e.nativeEvent.target.value)} /></div>
                             <div className="item"><input type="date" placeholder="date" value={date} onChange={(e) => setDate(e.nativeEvent.target.value)} /></div>
-                            <div className="item"><input type="file" id="file" onChange={(e) => setImage(e.nativeEvent.target.files[0])} /></div>
+                            <div className="item"><input type="text" id="file" placeholder="Image URL" onChange={(e) => setImage(e.nativeEvent.target.value)} /></div>
                         </div>
                         <div className="button">
                             <button style={{ color: 'black' }} onClick={handleSubmit}>Create Post</button>
