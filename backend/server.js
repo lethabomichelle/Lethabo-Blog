@@ -16,6 +16,8 @@ let nextId = (() => {
     return max;
 })();
 
+// get a post from json
+
 app.get('/api/posts', (req, res) => res.json(posts));
 
 app.get('/api/posts/:id', (req, res) => {
@@ -24,6 +26,7 @@ app.get('/api/posts/:id', (req, res) => {
     res.json(post);
 });
 
+// adding a post to json
 app.post('/api/posts', (req, res) => {
     const post = req.body;
     const id = ++nextId;
@@ -31,6 +34,8 @@ app.post('/api/posts', (req, res) => {
     posts.postList.push(post);
     res.json(post);
 });
+
+// updaiting post
 
 app.put('/api/posts/:id', (req, res) => {
     const id = String(req.params.id);
@@ -45,6 +50,7 @@ app.put('/api/posts/:id', (req, res) => {
     res.json(post);
 });
 
+// deleting post
 app.delete('/api/posts/:id', (req, res) => {
     const id = String(req.params.id);
     const index = posts.postList.findIndex(post => post.id === id);

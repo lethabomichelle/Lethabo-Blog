@@ -22,7 +22,7 @@ function Post() {
                             <img className="rounded-lg-3" src={post.image} alt="" width="720" />
                         </div>
                         <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                            <Link to={"/blog-layout/" + post.id} style={{ color: 'white' }} className="display-6 fw-bold lh-5">{post.title}</Link>
+                            <Link to={"/blog/" + post.id} style={{ color: 'white' }} className="display-6 fw-bold lh-5">{post.title}</Link>
                         </div>
                     </div></div>
             )}
