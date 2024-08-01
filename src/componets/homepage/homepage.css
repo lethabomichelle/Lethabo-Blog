@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+h6 {
+  font-family: 'Courier New', Courier, monospace; 
+  font-weight: normal;
+  font-size: 1rem;
+  color: white; 
+
+}
+
+/* .hero {
+    background-color: rgba(0, 0, 0, 0.5);
+} */
+
+.home {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(https://img.freepik.com/free-photo/woman-holding-weights-near-barbells_651396-1617.jpg?w=1060&t=st=1722190352~exp=1722190952~hmac=1b70b35d03cc0fd6c62d3011be567bed13d348d1382900278304ca6b79c8ba05);
+    background-size: cover;
+    background-position: center;
+    height: 35rem;
+    text-align: center;
+}
+
+.searchbox {
+    width: 45rem;
+    
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+}
+
+.message {
+    font-size: 5rem;
+    color:white;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bolder;
+}

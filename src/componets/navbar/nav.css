@@ -4,13 +4,16 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    display: flex;
+    justify-content: space-between;
   }
 
   li {
     float: left;
   }
   
-  li a {
+  a {
+    font-size: 24px;
     display: flex;
     color: white;
     text-align: center;
@@ -26,4 +29,14 @@ ul {
   .active {
     background-color: whitesmoke;
   }
+
+  .writePost{
+    background: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  
   

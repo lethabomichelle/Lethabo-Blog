@@ -1,0 +1,74 @@
+.addPost{
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    background-color: white;
+    padding: 2rem;
+    margin: 1rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    border-radius: 0.5rem;
+}
+
+.addPost * {
+    background-color: inherit;
+}
+
+.content > input {
+    border: none;
+    width: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.content{
+    flex: 5;
+}
+
+.menu{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input{
+    padding: 10px;
+    border: 1px solid lightgray;
+}
+
+input::placeholder {
+    color: #666;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0.7;
+}
+
+.writeContainer{
+    height: 400px;
+    overflow: scroll;
+    /* padding-left: 50px; */
+}
+  
+.editor{
+    height: 100%;
+}
+
+.item{
+    padding: 10px;
+}
+
+.button{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.authorBox{
+    display: flex;
+    justify-content: center;
+}
