@@ -9,7 +9,7 @@ const BlogLayout = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/posts/" + id).then(async res => {
+        fetch("https://lethabo-blog-1.onrender.com/api/posts/" + id).then(async res => {
             if (res.ok) {
                 const post = await res.json();
                 setPost(post);
