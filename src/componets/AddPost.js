@@ -25,7 +25,7 @@ const Write = () => {
             body: JSON.stringify(blog)
         }).then(async (res) => {
             res = await res.json();
-            navigate("/blog-layout/" + res.id);
+            navigate("/blog/" + res.id);
         });
     }
 
