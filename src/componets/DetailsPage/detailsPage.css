@@ -1,9 +1,27 @@
 button {
-    color: hsl(0, 0%, 100%);
-    padding: 0.2rem;
+    padding: 0.5rem 2rem;
     margin: 1rem;
-    width: 7rem;
-   
+    min-width: 7rem;
+    width: fit-content;
+    height: fit-content;
+    font-size: 1.5rem;
+    background-color: whitesmoke;
+    color: #112;
+    border: 0.1rem solid #252525;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.5s;
+
+    &:hover {
+        background-color: #717171;
+    }
+
+    a {
+        padding: 0;
+        margin: 0;
+        background-color: inherit;
+        color: inherit;
+    }
 }
 
 .buttons {

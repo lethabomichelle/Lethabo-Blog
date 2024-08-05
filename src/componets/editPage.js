@@ -25,7 +25,7 @@ const EditPage = () => {
                 setContent(post.passage);
                 setAuthor(post.author);
                 setDate(post.date);
-                // setImage(post.image);
+                setImage(post.image);
             }
         }).catch(e => console.log('e'))
     }, [id]);
@@ -33,14 +33,14 @@ const EditPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const blog = { id, title, passage: content, author, date, image };
-        // console.log(blog);
+        console.log(blog);
 
         fetch("http://localhost:3001/api/posts/" + id, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog)
         }).then(() => {
-            navigate("/")
+            navigate("/blog/" + id);
         })
     }
 

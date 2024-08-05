@@ -15,9 +15,9 @@ export default function Navbar() {
 
                     <ul className="nav col-12 col-lg-auto me-lg-auto mb-2  mb-md-0">
                         <li><a href="/" className=" px-2 ">Latest</a></li>
-                        <li><a href="/" className=" px-2 ">Body</a></li>
+                        {/* <li><a href="/" className=" px-2 ">Body</a></li>
                         <li><a href="/" className=" px-2 ">Mind</a></li>
-                        <li><a href="/" className=" px-2 ">Community</a></li>
+                        <li><a href="/" className=" px-2 ">Community</a></li> */}
                     </ul>
 
                     <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
