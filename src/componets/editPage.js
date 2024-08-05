@@ -17,7 +17,7 @@ const EditPage = () => {
     const [image, setImage] = useState(post.image);
 
     useEffect(() => {
-        fetch("https://lethabo-blog-1.onrender.com/api/posts/" + id).then(async res => {
+        fetch("https://backend-s05n.onrender.com/api/posts/" + id).then(async res => {
             if (res.ok) {
                 const post = await res.json();
                 setPost(post);
@@ -35,7 +35,7 @@ const EditPage = () => {
         const blog = { id, title, passage: content, author, date, image };
         console.log(blog);
 
-        fetch("https://lethabo-blog-1.onrender.com/api/posts/" + id, {
+        fetch("https://backend-s05n.onrender.com/api/posts/" + id, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog)

@@ -5,7 +5,7 @@ function Post() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetch("https://lethabo-blog-1.onrender.com/api/posts").then(async res => {
+        fetch("https://backend-s05n.onrender.com/api/posts").then(async res => {
             if (res.ok) {
                 const posts = await res.json();
                 setPosts(posts.postList);

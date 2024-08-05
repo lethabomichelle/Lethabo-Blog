@@ -9,7 +9,7 @@ const BlogLayout = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        fetch("https://lethabo-blog-1.onrender.com/api/posts/" + id).then(async res => {
+        fetch("https://backend-s05n.onrender.com/api/posts/" + id).then(async res => {
             if (res.ok) {
                 const post = await res.json();
                 setPost(post);
@@ -43,7 +43,7 @@ const BlogLayout = () => {
     );
 
     function deletePost(id) {
-        fetch("https://lethabo-blog-1.onrender.com/api/posts/" + id, {
+        fetch("https://backend-s05n.onrender.com/api/posts/" + id, {
             method: 'DELETE',
         }
         ).then(() => {

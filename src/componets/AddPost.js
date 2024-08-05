@@ -19,7 +19,7 @@ const Write = () => {
         e.preventDefault();
         const blog = { title, passage: content, author, date, image };
 
-        return fetch("https://lethabo-blog-1.onrender.com/api/posts", {
+        return fetch("https://backend-s05n.onrender.com/api/posts", {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog)
