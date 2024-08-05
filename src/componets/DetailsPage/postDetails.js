@@ -43,7 +43,7 @@ const BlogLayout = () => {
     );
 
     function deletePost(id) {
-        fetch("http://localhost:3001/api/posts/" + id, {
+        fetch("https://lethabo-blog-1.onrender.com/api/posts/" + id, {
             method: 'DELETE',
         }
         ).then(() => {
