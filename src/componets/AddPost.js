@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './addpost.css'
@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const Write = () => {
     const navigate = useNavigate();
 
-    const [post, setPost] = useState([]);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [author, setAuthor] = useState('');
