@@ -1,4 +1,13 @@
-const { createPool } = require("mysql2");
+const express = require("express")
+const { createPool } = require("mysql2/promise");
+const { stringify } = require('json5');
+const cors = require('cors');
+// const posts = require('./postData.json');
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 const pool = createPool({
     host: "127.0.0.1",
@@ -8,48 +17,57 @@ const pool = createPool({
     connectionLimit: 30
 });
 
-pool.query('SELECT * FROM blog.blogdetails', (err, result, fields) => {
-    if (err) {
-        console.log("err", err);
-    }
-    return console.log(result);
+let nextId = 0;
+(() => {
+    const sql = 'SELECT max(Post_Id) as max FROM blog.blogdetails';
+    pool.query(sql).then((result) => {
+        const max = result[0][0]['max'];
+        nextId = max;
+    });
+})();
+
+// // get a post from mySQL
+
+app.get('/api/posts', (req, res) => {
+    const sql = 'SELECT * FROM blog.blogdetails';
+    pool.query(sql).then((result, fields) => {
+        res.json(result[0]);
+    });
+    console.log('nextId', nextId);
 });
 
-// const express = require("express");
-// const cors = require('cors');
-// const posts = require('./postData.json');
-
-// const app = express();
-
-// app.use(cors());
-// app.use(express.json());
-
-// let nextId = (() => {
-//     let max = 0;
-//     posts.postList.forEach(post => {
-//         if (post.id > max)
-//             max = post.id;
-//     });
-//     return max;
-// })();
-
-// // get a post from json
-
-// app.get('/api/posts', (req, res) => res.json(posts));
-
-// app.get('/api/posts/:id', (req, res) => {
-//     const id = req.params.id;
-//     const post = posts.postList.find(post => post.id === id);
-//     res.json(post);
-// });
+app.get('/api/posts/:id', (req, res) => {
+    const sql = `SELECT * FROM blog.blogdetails where Post_id = ${req.params.id}`;
+    pool.query(sql).then(result => {
+        if (result[0].length === 0) {
+            res.send('no post with id "' + req.params.id + '"')
+            return;
+        }
+        res.json(result[0][0]);
+    }).catch(e => console.log(e));
+});
 
 // // adding a post to json
-// app.post('/api/posts', (req, res) => {
-//     const post = req.body;
-//     const id = ++nextId;
-//     post["id"] = String(id);
-//     posts.postList.push(post);
-//     res.json(post);
+app.post('/api/posts', (req, res) => {
+    const post = req.body;
+    const id = ++nextId;
+    post["id"] = String(id);
+    const sql = `insert into blog.blogdetails values (${post.id}, ${post.Title}, ${post.Author}, ${post.Post_Date}, ${post.Image_Url}, ${post.Passage})`;
+    pool.execute(sql).then(result => {
+        res.json(post);
+    });
+});
+
+// // deleting post
+// app.delete('/api/posts/:id', (req, res) => {
+//     const id = String(req.params.id);
+//     const index = posts.postList.findIndex(post => post.id === id);
+//     if (index === -1) {
+//         res.sendStatus(400);
+//         return;
+//     }
+//     posts.postList.splice(index, 1);
+//     res.sendStatus(200);
 // });
 
 // // updaiting post
@@ -67,18 +85,7 @@ pool.query('SELECT * FROM blog.blogdetails', (err, result, fields) => {
 //     res.json(post);
 // });
 
-// // deleting post
-// app.delete('/api/posts/:id', (req, res) => {
-//     const id = String(req.params.id);
-//     const index = posts.postList.findIndex(post => post.id === id);
-//     if (index === -1) {
-//         res.sendStatus(400);
-//         return;
-//     }
-//     posts.postList.splice(index, 1);
-//     res.sendStatus(200);
-// });
 
-// app.listen(3001, function () {
-//     console.log("express server is running on 3001");
-// });
+app.listen(3001, function () {
+    console.log("express server is running on 3001");
+});

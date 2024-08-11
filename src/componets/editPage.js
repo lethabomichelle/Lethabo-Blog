@@ -6,41 +6,39 @@ import Navbar from "./navbar/Nav";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditPage = () => {
-    const { id } = useParams();
+    const { Post_Id } = useParams();
     const navigate = useNavigate();
 
-    const [post, setPost] = useState({});
-    const [title, setTitle] = useState(post.title);
-    const [content, setContent] = useState(post.passage);
-    const [author, setAuthor] = useState(post.author);
-    const [date, setDate] = useState(post.date);
-    const [image, setImage] = useState(post.image);
+    const [Title, setTitle] = useState('');
+    const [Passage, setContent] = useState('');
+    const [Author, setAuthor] = useState('');
+    const [Post_Date, setDate] = useState('');
+    const [Image_Url, setImage] = useState('');
 
     useEffect(() => {
-        fetch("https://backend-s05n.onrender.com/api/posts/" + id).then(async res => {
+        fetch("http://localhost:3001/api/posts/" + Post_Id).then(async res => {
             if (res.ok) {
                 const post = await res.json();
-                setPost(post);
-                setTitle(post.title);
-                setContent(post.passage);
-                setAuthor(post.author);
-                setDate(post.date);
-                setImage(post.image);
+                setTitle(post.Title);
+                setContent(post.Passage);
+                setAuthor(post.Author);
+                setDate(post.Post_Date);
+                setImage(post.Image_Url);
             }
         }).catch(e => console.log('e'))
-    }, [id]);
+    }, [Post_Id]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const blog = { id, title, passage: content, author, date, image };
+        const blog = { Post_Id, Title, Passage, Author, Post_Date, Image_Url };
         console.log(blog);
 
-        fetch("https://backend-s05n.onrender.com/api/posts/" + id, {
+        fetch("http://localhost:3001/api/posts/" + Post_Id, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog)
         }).then(() => {
-            navigate("/blog/" + id);
+            navigate("/blog/" + Post_Id);
         })
     }
 
@@ -51,17 +49,17 @@ const EditPage = () => {
             </div>
             <div onSubmit={handleSubmit} className="addPost" style={{ marginLeft: '130px' }}>
                 <div className="content">
-                    <input type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.nativeEvent.target.value)} />
+                    <input type="text" placeholder="title" value={Title} onChange={(e) => setTitle(e.nativeEvent.target.value)} />
                     <div className="writeContainer">
-                        <ReactQuill className="editor" theme="snow" value={content} onChange={setContent} />
+                        <ReactQuill className="editor" theme="snow" value={Passage} onChange={setContent} />
                     </div>
                 </div>
                 <div className="modal-dialog authorBox" role="document">
                     <div className="modal-content rounded-4 shadow">
                         <div>
-                            <div style={{ paddingTop: '30px' }} className="item"><input type="text" placeholder="Enter your name" value={author} onChange={(e) => setAuthor(e.nativeEvent.target.value)} /></div>
-                            <div className="item"><input type="date" placeholder="date" value={date} onChange={(e) => setDate(e.nativeEvent.target.value)} /></div>
-                            <div className="item"><input type="text" id="file" value={image} placeholder="Image URL" onChange={(e) => setImage(e.nativeEvent.target.value)} /></div>
+                            <div style={{ paddingTop: '30px' }} className="item"><input type="text" placeholder="Enter your name" value={Author} onChange={(e) => setAuthor(e.nativeEvent.target.value)} /></div>
+                            <div className="item"><input type="date" placeholder="date" value={Post_Date} onChange={(e) => setDate(e.nativeEvent.target.value)} /></div>
+                            <div className="item"><input type="text" id="file" value={Image_Url} placeholder="Image URL" onChange={(e) => setImage(e.nativeEvent.target.value)} /></div>
                         </div>
                         <div className="button">
                             <button style={{ color: 'black' }} onClick={handleSubmit}>Edit Post</button>

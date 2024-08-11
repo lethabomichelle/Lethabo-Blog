@@ -8,17 +8,17 @@ import { useNavigate } from "react-router-dom";
 const Write = () => {
     const navigate = useNavigate();
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [author, setAuthor] = useState('');
-    const [date, setDate] = useState('');
-    const [image, setImage] = useState('');
+    const [Title, setTitle] = useState('');
+    const [Passage, setContent] = useState('');
+    const [Author, setAuthor] = useState('');
+    const [Post_Date, setDate] = useState('');
+    const [Image_Url, setImage] = useState('');
 
     function handleSubmit(e) {
         e.preventDefault();
-        const blog = { title, passage: content, author, date, image };
+        const blog = { Title, Passage, Author, Post_Date, Image_Url };
 
-        return fetch("https://backend-s05n.onrender.com/api/posts", {
+        return fetch("http://localhost:3001/api/posts/", {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog)
@@ -35,16 +35,16 @@ const Write = () => {
             </div>
             <div onSubmit={handleSubmit} className="addPost" style={{ marginLeft: '130px' }}>
                 <div className="content">
-                    <input type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.nativeEvent.target.value)} />
+                    <input type="text" placeholder="title" value={Title} onChange={(e) => setTitle(e.nativeEvent.target.value)} />
                     <div className="writeContainer">
-                        <ReactQuill className="editor" theme="snow" value={content} onChange={setContent} />
+                        <ReactQuill className="editor" theme="snow" value={Passage} onChange={setContent} />
                     </div>
                 </div>
                 <div className="modal-dialog authorBox" role="document">
                     <div className="modal-content rounded-4 shadow">
                         <div>
-                            <div style={{ paddingTop: '30px' }} className="item"><input type="text" placeholder="Enter your name" value={author} onChange={(e) => setAuthor(e.nativeEvent.target.value)} /></div>
-                            <div className="item"><input type="date" placeholder="date" value={date} onChange={(e) => setDate(e.nativeEvent.target.value)} /></div>
+                            <div style={{ paddingTop: '30px' }} className="item"><input type="text" placeholder="Enter your name" value={Author} onChange={(e) => setAuthor(e.nativeEvent.target.value)} /></div>
+                            <div className="item"><input type="date" placeholder="date" value={Post_Date} onChange={(e) => setDate(e.nativeEvent.target.value)} /></div>
                             <div className="item"><input type="text" id="file" placeholder="Image URL" onChange={(e) => setImage(e.nativeEvent.target.value)} /></div>
                         </div>
                         <div className="button">
