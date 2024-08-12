@@ -1,6 +1,5 @@
 const express = require("express")
 const { createPool } = require("mysql2/promise");
-const { stringify } = require('json5');
 const cors = require('cors');
 // const posts = require('./postData.json');
 
