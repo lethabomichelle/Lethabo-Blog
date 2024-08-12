@@ -58,17 +58,14 @@ app.post('/api/posts', (req, res) => {
     });
 });
 
-// // deleting post
-// app.delete('/api/posts/:id', (req, res) => {
-//     const id = String(req.params.id);
-//     const index = posts.postList.findIndex(post => post.id === id);
-//     if (index === -1) {
-//         res.sendStatus(400);
-//         return;
-//     }
-//     posts.postList.splice(index, 1);
-//     res.sendStatus(200);
-// });
+// deleting post
+app.delete('/api/posts/:id', (req, res) => {
+    const id = String(req.params.id);
+    const sql = `delete from blog.blogdetails where Post_ID = ${id}`;
+    pool.execute(sql).then(() => {
+        res.status(200);
+    });
+});
 
 // // updaiting post
 
