@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function CommentSection() {
     const [comments, setComments] = useState([]);
-    const [newComment, setNewComment] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (newComment.trim() !== '') {
-            setComments([...comments, { text: newComment }]);
-            setNewComment('');
-        }
-    };
+    useEffect(() => {
+        fetch("http://localhost:3001/api/posts/").then(async res => {
+            if (res.ok) {
+                const comment = await res.json();
+                setComments();
+            }
+        }).catch(e => console.log(e))
+    }, []);
 
     return (
         <div style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
@@ -21,7 +21,7 @@ function CommentSection() {
                     <li key={index} style={{ display: 'flex' }}>{comment.text}</li>
                 ))}
             </ul>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', marginTop: '2rem' }}>
+            {/* <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', marginTop: '2rem' }}>
                 <textarea
                     style={{ color: 'white', width: '350px' }}
                     type="textarea"
@@ -32,7 +32,7 @@ function CommentSection() {
                 ></textarea>
 
                 <button type="submit">Submit</button>
-            </form>
+            </form> */}
 
         </div>
     );

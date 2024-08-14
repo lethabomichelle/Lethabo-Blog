@@ -66,6 +66,23 @@ app.delete('/api/posts/:id', (req, res) => {
     });
 });
 
+
+// login
+
+app.post("/api/login", (req, res) => {
+    const sql = "SELECT * FROM userdetails WHERE username = ? AND user_Password = ?"
+    const values = [
+        req.body.email,
+        req.body.password
+    ]
+    // console.log('body', values);
+    pool.query(sql, values, (err, data) => {
+        if (err) return res.json('Login Failed');
+        // console.log('body')
+        return res.json(data);
+    })
+})
+
 // // updaiting post
 
 // app.put('/api/posts/:id', (req, res) => {

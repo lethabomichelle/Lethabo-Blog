@@ -2,8 +2,17 @@ import React, { useState } from "react";
 import './logIn.css'
 
 export default function Login() {
-    const [userEmail, setUserEmail] = useState("");
-    const [PassWord, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        fetch("http://localhost:3001/api/login/", {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        }).catch(e => console.log(e))
+    }
 
     return (
         <div className="logincontainer">
@@ -14,18 +23,18 @@ export default function Login() {
             <div className="inputs">
                 <div className="input">
                     <i class="bi bi-envelope-at"></i>
-                    <input type="email" placeholder="Email" onChange={(e) => { setUserEmail(e.target.value); }} />
+                    <input type="email" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value); }} />
                 </div>
                 <div className="input">
                     <i class="bi bi-lock-fill"></i>
-                    <input type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value); }} />
+                    <input type="password" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); }} />
                 </div>
                 <div className="login">
                     Forgot Password  <a href="/">Click Here</a>
                 </div>
                 <div className="submitContainer">
                     <div className="submit">
-                        <button >Login</button>
+                        <button onClick={handleSubmit}>Login</button>
                     </div>
                 </div>
 
