@@ -1,6 +1,7 @@
 const express = require("express")
 const { createPool } = require("mysql2/promise");
 const cors = require('cors');
+require('dotenv').config();
 // const posts = require('./postData.json');
 
 const app = express();
@@ -9,10 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 const pool = createPool({
-    host: "127.0.0.1",
-    user: "root",
-    password: "Lethabo.ml78",
-    database: "blog",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     connectionLimit: 30
 });
 
@@ -99,6 +100,6 @@ app.post("/api/login", (req, res) => {
 // });
 
 
-app.listen(3001, function () {
+app.listen(process.env.SERVER_PORT || 3001, function () {
     console.log("express server is running on 3001");
 });
