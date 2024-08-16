@@ -16,7 +16,7 @@ const EditPage = () => {
     const [Image_Url, setImage] = useState('');
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/posts/" + Post_Id).then(async res => {
+        fetch("https://backend-s05n.onrender.com/api/posts/" + Post_Id).then(async res => {
             if (res.ok) {
                 const post = await res.json();
                 setTitle(post.Title);
@@ -33,7 +33,7 @@ const EditPage = () => {
         const blog = { Post_Id, Title, Passage, Author, Post_Date, Image_Url };
         console.log(blog);
 
-        fetch("http://localhost:3001/api/posts/" + Post_Id, {
+        fetch("https://backend-s05n.onrender.com/api/posts/" + Post_Id, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog)

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import './detailsPage.css'
-import CommentSection from "./comments";
+// import CommentSection from "./comments";
 
 const BlogLayout = () => {
     const [post, setPost] = useState({});
@@ -10,7 +10,7 @@ const BlogLayout = () => {
     const { Post_Id } = useParams();
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/posts/" + Post_Id).then(async res => {
+        fetch("https://backend-s05n.onrender.com/api/posts/" + Post_Id).then(async res => {
             if (res.ok) {
                 const post = await res.json();
                 console.log(post)
@@ -34,7 +34,6 @@ const BlogLayout = () => {
                 <h4>{post.subtitle}</h4>
                 {/* {String(post.passage).split('\n').map(paragraph => <p key={String(post.id)}>{paragraph}</p>)} */}
                 <div dangerouslySetInnerHTML={{ __html: post.Passage }}>
-                    { }
                 </div>
             </div>
             <div className="buttons">
@@ -42,12 +41,12 @@ const BlogLayout = () => {
                 <button><Link to={"/edit/" + Post_Id}>Update</Link></button>
             </div>
             <hr style={{ borderTop: '2px solid white', width: '90%', margin: '20px auto' }} />
-            <CommentSection />
+            {/* <CommentSection /> */}
         </div >
     );
 
     function deletePost(Post_Id) {
-        fetch("http://localhost:3001/api/posts/" + Post_Id, {
+        fetch("https://backend-s05n.onrender.com/api/posts/" + Post_Id, {
             method: 'DELETE',
         }
         ).then(() => {
