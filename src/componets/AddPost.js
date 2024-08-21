@@ -17,14 +17,18 @@ const Write = () => {
     function handleSubmit(e) {
         e.preventDefault();
         const blog = { Title, Passage, Author, Post_Date, Image_Url };
+        // console.log(blog);
 
-        return fetch("https://backend-s05n.onrender.com/api/posts/", {
+        // const url = 'http://localhost:3001/api/posts/'
+        const url = 'https://backend-s05n.onrender.com/api/posts/'
+        return fetch(url, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog)
-        }).then(async (res) => {
-            res = await res.json();
-            navigate("/blog/" + res.id);
+        }).then(res => {
+            // res = await res.json();
+            console.log("blog");
+            navigate("/");
         });
     }
 

@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 function Post() {
     const [posts, setPosts] = useState([]);
-
+    // const url = 'http://localhost:3001/api/posts/'
+    const url = 'https://backend-s05n.onrender.com/api/posts/'
     useEffect(() => {
-        fetch("https://backend-s05n.onrender.com/api/posts/").then(async res => {
+
+        fetch(url).then(async res => {
             if (res.ok) {
                 const posts = await res.json();
                 setPosts(posts);
@@ -16,7 +18,7 @@ function Post() {
     return (
         <div>
             {posts.map(post =>
-                <div key={post.id} className="container my-5">
+                <div key={post.Post_Id} className="container my-5">
                     <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
                         <div className="col-lg-4   overflow-hidden shadow-lg">
                             <img className="rounded-lg-3" src={post.Image_Url} alt="" width="720" />

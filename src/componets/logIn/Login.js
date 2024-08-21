@@ -7,7 +7,7 @@ export default function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        fetch("https://backend-s05n.onrender.com/api/login/", {
+        fetch(process.env.BACKEND_URL, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })

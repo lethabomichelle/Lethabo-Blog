@@ -8,9 +8,11 @@ const BlogLayout = () => {
     const navigate = useNavigate();
 
     const { Post_Id } = useParams();
+    // const url = 'http://localhost:3001/api/posts/'
+    const url = 'https://backend-s05n.onrender.com/api/posts/'
 
     useEffect(() => {
-        fetch("https://backend-s05n.onrender.com/api/posts/" + Post_Id).then(async res => {
+        fetch(url + Post_Id).then(async res => {
             if (res.ok) {
                 const post = await res.json();
                 console.log(post)
@@ -46,7 +48,7 @@ const BlogLayout = () => {
     );
 
     function deletePost(Post_Id) {
-        fetch("https://backend-s05n.onrender.com/api/posts/" + Post_Id, {
+        fetch(url + Post_Id, {
             method: 'DELETE',
         }
         ).then(() => {

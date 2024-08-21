@@ -51,10 +51,12 @@ app.get('/api/posts/:id', (req, res) => {
 // // adding a post to json
 app.post('/api/posts', (req, res) => {
     const post = req.body;
-    // const id = ++nextId;
-    // post["id"] = String(id);
-    const sql = `insert into blog.blogdetails (Title, Author, Post_Date, Image_Url,  Passage) values (${post.Title}, ${post.Author}, ${post.Post_Date}, ${post.Image_Url}, ${post.Passage})`;
+    const id = ++nextId;
+    post["id"] = String(id);
+    const sql = `insert into blog.blogdetails (Post_Id, Title, Author, Post_Date, Image_Url,  Passage) values (${post.id}, '${post.Title}', '${post.Author}', '${post.Post_Date}', '${post.Image_Url}', '${post.Passage}')`;
+    // console.log(sql)
     pool.execute(sql).then(result => {
+        console.log(sql)
         res.status(200);
     });
 });
